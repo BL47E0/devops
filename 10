@@ -1,0 +1,18 @@
+git add Jenkinsfile html.go main.go
+git commit -m "Version 2.0.0"
+git push origin new-feature
+
+In the Jenkins user interface, navigate to the sample-app job:
+
+Click Dashboard (or the Jenkins logo in the top left).
+Click sample-app.
+If the new-feature branch does not appear immediately under the Branches tab, click Scan Multibranch Pipeline Now in the left sidebar.
+Click the new-feature branch link.
+
+In the Build History section on the left, click the build number (for example, #1), then click Console Output in the left sidebar to view the live build logs.
+
+Track the output of the build and watch for the kubectl --namespace=new-feature apply... messages. Once completed, your new-feature branch is deployed to your cluster.
+
+kubectl proxy &
+curl \
+http://localhost:8001/api/v1/namespaces/new-feature/services/gceme-frontend:80/proxy/version
