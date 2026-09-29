@@ -1,0 +1,23 @@
+export GIT_SERVER_IP=$(gcloud compute instances describe git-server --zone= --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+echo "Git Server IP: ${GIT_SERVER_IP}"
+
+cd ~/continuous-deployment-on-kubernetes/sample-app
+git init
+git config --global user.email "student@qwiklabs.net"
+git config --global user.name "Student"
+git branch -m master
+
+git remote add origin http://giteaadmin:GiteaPassword123@${GIT_SERVER_IP}:3000/giteaadmin/sample-app.git
+
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+add service acc
+manage jenkins
+security> credentials
+Stores scoped to Jenkins, click System.
+Global credentials (unrestricted)
+Add Credentials
+Google Service Account from metadata
+enetr id create
