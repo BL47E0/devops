@@ -1,0 +1,16 @@
+git checkout -b new-feature
+vi Jenkinsfile
+i
+replace project id and cluster zone
+esc and :wq
+vi main.go
+i
+
+The version is defined in this line:
+const version string = "1.0.0"
+Update it to the following:
+
+const version string = "2.0.0"
+
+:wq
+
